@@ -14,6 +14,8 @@ const MainContainer = () => {
     const [testForUseEffect, setTestForUseEffect] = useState(null);
     const [testForButtonClick, setTestForButtonClick] = useState(null);
 
+    const [users, setUsers] = useState([]);    
+
     /* ===== useEffect를 통한 API 호출 ===== */
     useEffect(() => {
 
@@ -22,13 +24,13 @@ const MainContainer = () => {
             try {
 
                 const response = await fetch('http://localhost:8080/test');
-                console.log('response: ', response)
+                // console.log('response: ', response)
 
                 const result = await response.json(); // 응답 데이터를 JSON으로 변환
-                console.log('result: ', result)
+                // console.log('result: ', result)
 
                 setTestForUseEffect(result.data); // 데이터를 상태에 저장
-                console.log('testForUseEffect: ', testForUseEffect);
+                // console.log('testForUseEffect: ', testForUseEffect);
 
             } catch (err) {
                 console.error(err);
@@ -63,15 +65,50 @@ const MainContainer = () => {
     
             setTestForButtonClick(result.data);
 
-            console.log(testForButtonClick);
+            // console.log(testForButtonClick);
         } catch (err) {
             console.error(err);
+        }
+    };
+
+    // 회원 전체 조회
+    const handleGetAllUsers = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/user');
+            const result = await response.json();
+
+            setUsers(result);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const getUsers = async () => {
+        try {
+            const response = await fetch('http://localhost:3333/user/all');
+            const result = await response.json();
+
+            // console.log(result);
+            // console.log(result.status);
+
+
+            // console.log(result.data);
+            // console.log(result.data[0]);
+            // console.log(result.data[0].user_id)
+
+            setUsers(result);
+        } catch (e) {
+            console.error(e);
         }
     };
 
     return (
         <MainPresenter
             handleTest={handleTest} // 작성한 비즈니스 로직을 Presenter에게 넘김
+            handleGetAllUsers={handleGetAllUsers}
+            users={users}
+
+            getUsers={getUsers}
         />
     );
 };

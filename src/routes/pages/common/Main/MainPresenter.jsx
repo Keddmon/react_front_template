@@ -11,14 +11,30 @@ import './Main.css';
 const MainPresenter = ({
 
     // Container에서 넘긴 데이터를 props로 받음
-    handleTest
-    
+    handleTest,
+
+    handleGetAllUsers,
+    users,
+
+    getUsers,
+
 }) => {
+
+    console.log(users.data)
     return (
         <MainLayout>
             <button
                 onClick={handleTest}
             >테스트 버튼</button>
+
+            <button
+                onClick={handleGetAllUsers}
+            >고객 조회</button>
+
+            <button onClick={getUsers}>
+                버튼
+            </button>
+
         </MainLayout>
     );
 };
