@@ -9,31 +9,38 @@ import './Main.css';
  */
 
 const MainPresenter = ({
+    navigate,
 
     // Container에서 넘긴 데이터를 props로 받음
     handleTest,
 
     handleGetAllUsers,
-    users,
-
-    getUsers,
 
 }) => {
 
-    console.log(users.data)
     return (
         <MainLayout>
-            <button
-                onClick={handleTest}
-            >테스트 버튼</button>
+            <div className='main-container'>
+                <div className='main-test-container'>
+                    <button
+                        onClick={handleTest}
+                    >테스트 버튼</button>
 
-            <button
-                onClick={handleGetAllUsers}
-            >고객 조회</button>
+                    <button
+                        onClick={handleGetAllUsers}
+                    >고객 조회</button>
+                </div>
 
-            <button onClick={getUsers}>
-                버튼
-            </button>
+                <div className='main-btn-wrap'>
+                    <button
+                        onClick={() => navigate('/signup')}
+                    >회원가입</button>
+                    <button
+                        onClick={() => navigate('/signin')}
+                    >로그인</button>
+                </div>
+
+            </div>
 
         </MainLayout>
     );

@@ -14,11 +14,11 @@ const SignUpContainer = () => {
         try {
             const userInfo = {
                 id: userId,
-                pw: userPassword,
+                password: userPassword,
                 name: userName
             };
 
-            const response = await fetch('http://localhost:3333/user/signup', {
+            const response = await fetch('http://localhost:8080/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 const SignInContainer = () => {
     const navigate = useNavigate();
 
-
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSignIn = async (e) => {
+        // <form></form> 태그로 작성 시, 새롭게 렌더링 되는 것을 막기 위해 추가함
         e.preventDefault();
 
         if (!id.length) {
@@ -25,10 +25,10 @@ const SignInContainer = () => {
         try {
             const userInfo = {
                 id: id,
-                pw: password,
+                password: password,
             };
 
-            const response = await fetch('http://localhost:3333/user/signin', {
+            const response = await fetch('http://localhost:8080/user/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
